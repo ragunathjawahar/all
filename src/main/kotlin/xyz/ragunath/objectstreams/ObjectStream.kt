@@ -43,8 +43,9 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          start
-            .flatMap { list1 -> property2.values.map { value2 -> list1 + value2 } }
+          val a = start.productOf(property2.values)
+
+          a
             .map { constructor.newInstance(it) }
         }
 
@@ -53,8 +54,9 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          start
-            .flatMap { list1 -> property2.values.map { value2 -> list1 + value2 } }
+          val a = start.productOf(property2.values)
+
+          a
             .flatMap { list2 -> property3.values.map { value3 -> list2 + value3 } }
             .map { constructor.newInstance(it) }
         }
