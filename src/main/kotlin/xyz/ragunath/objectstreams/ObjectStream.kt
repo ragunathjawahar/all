@@ -65,17 +65,15 @@ class ObjectStream {
         }
 
         4 -> {
-          val (property1, property2, property3, property4) = properties
+          val firstProperty = properties.first()
+          val remainingProperties = properties.drop(1)
 
-          val start = property1.values.map(::listOf)
+          var accumulator = firstProperty.values.map(::listOf)
+          for (property in remainingProperties) {
+            accumulator = accumulator.product(property.values)
+          }
 
-          val a = start.product(property2.values)
-          val b = a.product(property3.values)
-          val c = b.product(property4.values)
-
-          val finalList = c
-
-          finalList.newInstances(constructor)
+          accumulator.newInstances(constructor)
         }
 
         else -> {
