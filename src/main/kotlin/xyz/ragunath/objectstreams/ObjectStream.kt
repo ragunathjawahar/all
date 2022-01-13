@@ -2,8 +2,8 @@ package xyz.ragunath.objectstreams
 
 class ObjectStream {
   companion object {
-    fun of(first: Int, vararg remaining: Int): List<Int> {
-      return listOf(first, *remaining.toTypedArray())
+    fun <T> of(first: T, vararg remaining: T): List<T> {
+      return listOf(first, *remaining)
     }
   }
 }
