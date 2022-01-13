@@ -1,5 +1,6 @@
 package xyz.ragunath.objectstreams
 
+import arrow.core.Tuple4
 import kotlin.reflect.KClass
 
 class ObjectStream {
@@ -46,6 +47,20 @@ class ObjectStream {
           third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
         }
         threeParameters.map { (first, second, three) -> constructor.call(first, second, three) }
+      } else if (propertyCount == 4) {
+        val (first, second, third, fourth) = properties
+        val twoParameters = first.values.flatMap { firstValue ->
+          second.values.map { secondValue -> firstValue to secondValue }.toList()
+        }
+        val threeParameters = twoParameters.flatMap { firstTwoValues ->
+          val (firstValue, secondValue) = firstTwoValues
+          third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+        }
+        val fourParameters = threeParameters.flatMap { triple ->
+          val (firstValue, secondValue, thirdValue) = triple
+          fourth.values.map { fourthValue -> Tuple4(firstValue, secondValue, thirdValue, fourthValue) }
+        }
+        fourParameters.map { (first, second, third, fourth) -> constructor.call(first, second, third, fourth) }
       } else {
         throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
       }

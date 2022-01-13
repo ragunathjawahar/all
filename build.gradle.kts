@@ -27,6 +27,7 @@ val junitVersion = "5.8.2"
 dependencies {
   implementation(kotlin("stdlib"))
   implementation(kotlin("reflect"))
+  implementation("io.arrow-kt:arrow-core-jvm:1.0.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
   testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
@@ -35,8 +36,6 @@ dependencies {
   testImplementation("com.approvaltests:approvaltests:12.4.1")
 
   testImplementation("com.google.truth:truth:1.1.3")
-
-  testImplementation("io.arrow-kt:arrow-core:1.0.1")
 }
 
 tasks.test {

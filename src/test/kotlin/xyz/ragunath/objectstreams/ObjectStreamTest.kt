@@ -1,6 +1,8 @@
 package xyz.ragunath.objectstreams
 
+import arrow.core.Tuple4
 import com.google.common.truth.Truth.assertThat
+import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import xyz.ragunath.objectstreams.fixtures.Age
@@ -120,6 +122,26 @@ class ObjectStreamTest {
           Coffee("Attikan", Roast.Dark, GrindSize.Coarse),
         )
         .inOrder()
+    }
+  }
+
+  @Nested
+  inner class FourProperties {
+    @Test
+    fun `tuple 4`() {
+      // given
+      val tuple4Builder = ObjectStream
+        .of(Tuple4::class)
+        .property("first", 1, 2, 3, 4)
+        .property("second", 'A', 'B', 'C', 'D')
+        .property("third", true, false)
+        .property("fourth", 1.0, 2.0, 3.0)
+
+      // when
+      val tuple4s = tuple4Builder.generate()
+
+      // then
+      Approvals.verify(tuple4s)
     }
   }
 }

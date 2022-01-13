@@ -3,5 +3,6 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$3</ID>
+    <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$4</ID>
   </CurrentIssues>
 </SmellBaseline>
