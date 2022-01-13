@@ -1,9 +1,11 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 plugins {
   kotlin("jvm") version "1.6.10"
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
+  id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 group = "xyz.ragunath"
@@ -48,6 +50,14 @@ tasks.withType<Detekt>().configureEach {
 tasks.withType<Detekt>().configureEach {
   jvmTarget = "1.8"
 }
+
 tasks.withType<DetektCreateBaselineTask>().configureEach {
   jvmTarget = "1.8"
+}
+
+configure<KtlintExtension> {
+  verbose.set(true)
+  outputToConsole.set(true)
+  outputColorName.set("RED")
+  baseline.set(file("$projectDir/ktlint/baseline.xml"))
 }
