@@ -1,5 +1,9 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+
 plugins {
   kotlin("jvm") version "1.6.10"
+  id("io.gitlab.arturbosch.detekt") version "1.19.0"
 }
 
 group = "xyz.ragunath"
@@ -26,4 +30,24 @@ dependencies {
 
 tasks.test {
   useJUnitPlatform()
+}
+
+detekt {
+  buildUponDefaultConfig = true
+  allRules = false
+  baseline = file("$projectDir/detekt/baseline.xml")
+}
+
+tasks.withType<Detekt>().configureEach {
+  reports {
+    xml.required.set(true)
+    sarif.required.set(true)
+  }
+}
+
+tasks.withType<Detekt>().configureEach {
+  jvmTarget = "1.8"
+}
+tasks.withType<DetektCreateBaselineTask>().configureEach {
+  jvmTarget = "1.8"
 }
