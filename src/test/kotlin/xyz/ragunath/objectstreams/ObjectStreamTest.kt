@@ -58,4 +58,31 @@ class ObjectStreamTest {
         .containsExactly(Age(1))
     }
   }
+
+  @Nested
+  inner class TwoProperties {
+    @Test
+    fun pairs() {
+      // given
+      val pairsBuilder = ObjectStream
+        .of(Pair::class)
+        .property("first", "A", "B")
+        .property("second", 1, 2, 3)
+
+      // when
+      val pairs = pairsBuilder.generate()
+
+      // then
+      assertThat(pairs)
+        .containsExactly(
+          "A" to 1,
+          "A" to 2,
+          "A" to 3,
+          "B" to 1,
+          "B" to 2,
+          "B" to 3,
+        )
+        .inOrder()
+    }
+  }
 }

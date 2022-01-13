@@ -13,20 +13,32 @@ class ObjectStream {
     }
   }
 
-  internal class Property(val name: String, val values: List<Int>)
+  internal class Property<T>(val name: String, val values: List<T>)
 
   class Builder<T : Any>(private val clazz: KClass<T>) {
-    private val properties = mutableListOf<Property>()
+    private val properties = mutableListOf<Property<*>>()
 
-    fun property(name: String, first: Int, vararg remaining: Int): Builder<T> {
-      properties.add(Property(name, listOf(first, *remaining.toTypedArray())))
+    fun <P> property(name: String, first: P, vararg remaining: P): Builder<T> {
+      properties.add(Property(name, listOf(first, *remaining)))
       return this
     }
 
     fun generate(): List<T> {
-      val first = properties.first()
+      val propertyCount = properties.size
       val constructor = clazz.constructors.first()
-      return first.values.map { value -> constructor.call(value) }
+
+      return if (propertyCount == 1) {
+        val first = properties.first()
+        return first.values.map { value -> constructor.call(value) }
+      } else if (propertyCount == 2) {
+        val (first, second) = properties
+        val allParameters = first.values.flatMap { firstValue ->
+          second.values.map { secondValue -> firstValue to secondValue }.toList()
+        }
+        allParameters.map { (first, second) -> constructor.call(first, second) }
+      } else {
+        throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
+      }
     }
   }
 }
