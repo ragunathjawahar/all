@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# run all verifications
+./gradlew ktlintCheck detekt test
+
+RESULT=$?
+
+exit $RESULT

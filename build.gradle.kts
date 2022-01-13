@@ -2,6 +2,10 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
+buildscript {
+  apply(from = ".git-hooks/manage.gradle")
+}
+
 plugins {
   kotlin("jvm") version "1.6.10"
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
