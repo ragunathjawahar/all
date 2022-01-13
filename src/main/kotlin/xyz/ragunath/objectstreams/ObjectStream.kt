@@ -39,19 +39,7 @@ class ObjectStream {
           return finalList.newInstances(constructor)
         }
 
-        2 -> {
-          val (property1, property2) = properties
-
-          val start = property1.values.map(::listOf)
-
-          val a = start.product(property2.values)
-
-          val finalList = a
-
-          finalList.newInstances(constructor)
-        }
-
-        3, 4 -> {
+        2, 3, 4 -> {
           val firstProperty = properties.first()
           val remainingProperties = properties.drop(1)
 
