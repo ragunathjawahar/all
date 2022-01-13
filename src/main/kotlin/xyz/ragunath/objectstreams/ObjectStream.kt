@@ -14,12 +14,12 @@ class ObjectStream {
     }
   }
 
-  internal class Property<T>(val name: String, val values: List<T>)
+  internal class Property<X>(val name: String, val values: List<X>)
 
   class Builder<T : Any>(private val clazz: KClass<T>) {
     private val properties = mutableListOf<Property<*>>()
 
-    fun <P> property(name: String, first: P, vararg remaining: P): Builder<T> {
+    fun <A> property(name: String, first: A, vararg remaining: A): Builder<T> {
       properties.add(Property(name, listOf(first, *remaining)))
       return this
     }
