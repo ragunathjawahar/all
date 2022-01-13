@@ -35,36 +35,36 @@ class ObjectStream {
         }
         2 -> {
           val (first, second) = properties
-          val twoParameters = first.values.flatMap { firstValue ->
+          val twoProperties = first.values.flatMap { firstValue ->
             second.values.map { secondValue -> firstValue to secondValue }.toList()
           }
-          twoParameters.map { (first, second) -> constructor.call(first, second) }
+          twoProperties.map { (first, second) -> constructor.call(first, second) }
         }
         3 -> {
           val (first, second, third) = properties
-          val twoParameters = first.values.flatMap { firstValue ->
+          val twoProperties = first.values.flatMap { firstValue ->
             second.values.map { secondValue -> firstValue to secondValue }.toList()
           }
-          val threeParameters = twoParameters.flatMap { firstTwoValues ->
+          val threeProperties = twoProperties.flatMap { firstTwoValues ->
             val (firstValue, secondValue) = firstTwoValues
             third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
           }
-          threeParameters.map { (first, second, three) -> constructor.call(first, second, three) }
+          threeProperties.map { (first, second, three) -> constructor.call(first, second, three) }
         }
         4 -> {
           val (first, second, third, fourth) = properties
-          val twoParameters = first.values.flatMap { firstValue ->
+          val twoProperties = first.values.flatMap { firstValue ->
             second.values.map { secondValue -> firstValue to secondValue }.toList()
           }
-          val threeParameters = twoParameters.flatMap { firstTwoValues ->
+          val threeProperties = twoProperties.flatMap { firstTwoValues ->
             val (firstValue, secondValue) = firstTwoValues
             third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
           }
-          val fourParameters = threeParameters.flatMap { triple ->
+          val fourProperties = threeProperties.flatMap { triple ->
             val (firstValue, secondValue, thirdValue) = triple
             fourth.values.map { fourthValue -> Tuple4(firstValue, secondValue, thirdValue, fourthValue) }
           }
-          fourParameters.map { (first, second, third, fourth) -> constructor.call(first, second, third, fourth) }
+          fourProperties.map { (first, second, third, fourth) -> constructor.call(first, second, third, fourth) }
         }
         else -> {
           throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
