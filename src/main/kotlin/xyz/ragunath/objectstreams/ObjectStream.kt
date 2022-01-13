@@ -1,6 +1,5 @@
 package xyz.ragunath.objectstreams
 
-import arrow.core.Tuple4
 import kotlin.reflect.KClass
 
 class ObjectStream {
@@ -33,14 +32,15 @@ class ObjectStream {
           val (property1) = properties
 
           return property1.values
-            .map { value1 -> constructor.call(value1) }
+            .map { listOf(it) }
+            .map { (value1) -> constructor.call(value1) }
         }
 
         2 -> {
           val (property1, property2) = properties
 
           property1.values
-            .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
+            .flatMap { value1 -> property2.values.map { value2 -> listOf(value1, value2) } }
             .map { (value1, value2) -> constructor.call(value1, value2) }
         }
 
@@ -49,7 +49,7 @@ class ObjectStream {
 
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
-            .flatMap { (value1, value2) -> property3.values.map { value3 -> Triple(value1, value2, value3) } }
+            .flatMap { (value1, value2) -> property3.values.map { value3 -> listOf(value1, value2, value3) } }
             .map { (value1, value2, value3) -> constructor.call(value1, value2, value3) }
         }
 
@@ -59,7 +59,7 @@ class ObjectStream {
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> Triple(value1, value2, value3) } }
-            .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> Tuple4(value1, value2, value3, fourthValue) } }
+            .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> listOf(value1, value2, value3, fourthValue) } }
             .map { (value1, value2, value3, value4) -> constructor.call(value1, value2, value3, value4) }
         }
 
