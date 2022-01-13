@@ -7,7 +7,7 @@ import xyz.ragunath.objectstreams.fixtures.Age
 
 class ObjectStreamTest {
   @Nested
-  inner class SingleParameters {
+  inner class SingleProperty {
     @Test
     fun integers() {
       // given & when
