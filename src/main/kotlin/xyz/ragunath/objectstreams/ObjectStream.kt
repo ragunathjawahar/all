@@ -28,41 +28,47 @@ class ObjectStream {
       val propertyCount = properties.size
       val constructor = clazz.constructors.first()
 
-      return if (propertyCount == 1) {
-        val first = properties.first()
-        return first.values.map { value -> constructor.call(value) }
-      } else if (propertyCount == 2) {
-        val (first, second) = properties
-        val twoParameters = first.values.flatMap { firstValue ->
-          second.values.map { secondValue -> firstValue to secondValue }.toList()
+      return when (propertyCount) {
+        1 -> {
+          val first = properties.first()
+          return first.values.map { value -> constructor.call(value) }
         }
-        twoParameters.map { (first, second) -> constructor.call(first, second) }
-      } else if (propertyCount == 3) {
-        val (first, second, third) = properties
-        val twoParameters = first.values.flatMap { firstValue ->
-          second.values.map { secondValue -> firstValue to secondValue }.toList()
+        2 -> {
+          val (first, second) = properties
+          val twoParameters = first.values.flatMap { firstValue ->
+            second.values.map { secondValue -> firstValue to secondValue }.toList()
+          }
+          twoParameters.map { (first, second) -> constructor.call(first, second) }
         }
-        val threeParameters = twoParameters.flatMap { firstTwoValues ->
-          val (firstValue, secondValue) = firstTwoValues
-          third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+        3 -> {
+          val (first, second, third) = properties
+          val twoParameters = first.values.flatMap { firstValue ->
+            second.values.map { secondValue -> firstValue to secondValue }.toList()
+          }
+          val threeParameters = twoParameters.flatMap { firstTwoValues ->
+            val (firstValue, secondValue) = firstTwoValues
+            third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+          }
+          threeParameters.map { (first, second, three) -> constructor.call(first, second, three) }
         }
-        threeParameters.map { (first, second, three) -> constructor.call(first, second, three) }
-      } else if (propertyCount == 4) {
-        val (first, second, third, fourth) = properties
-        val twoParameters = first.values.flatMap { firstValue ->
-          second.values.map { secondValue -> firstValue to secondValue }.toList()
+        4 -> {
+          val (first, second, third, fourth) = properties
+          val twoParameters = first.values.flatMap { firstValue ->
+            second.values.map { secondValue -> firstValue to secondValue }.toList()
+          }
+          val threeParameters = twoParameters.flatMap { firstTwoValues ->
+            val (firstValue, secondValue) = firstTwoValues
+            third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+          }
+          val fourParameters = threeParameters.flatMap { triple ->
+            val (firstValue, secondValue, thirdValue) = triple
+            fourth.values.map { fourthValue -> Tuple4(firstValue, secondValue, thirdValue, fourthValue) }
+          }
+          fourParameters.map { (first, second, third, fourth) -> constructor.call(first, second, third, fourth) }
         }
-        val threeParameters = twoParameters.flatMap { firstTwoValues ->
-          val (firstValue, secondValue) = firstTwoValues
-          third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+        else -> {
+          throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
         }
-        val fourParameters = threeParameters.flatMap { triple ->
-          val (firstValue, secondValue, thirdValue) = triple
-          fourth.values.map { fourthValue -> Tuple4(firstValue, secondValue, thirdValue, fourthValue) }
-        }
-        fourParameters.map { (first, second, third, fourth) -> constructor.call(first, second, third, fourth) }
-      } else {
-        throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
       }
     }
   }
