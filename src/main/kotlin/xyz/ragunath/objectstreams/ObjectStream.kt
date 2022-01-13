@@ -33,7 +33,7 @@ class ObjectStream {
 
           return property1.values
             .map { listOf(it) }
-            .map { (value1) -> constructor.call(value1) }
+            .map { arguments -> val (arg1) = arguments; constructor.call(arg1) }
         }
 
         2 -> {
@@ -41,7 +41,7 @@ class ObjectStream {
 
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> listOf(value1, value2) } }
-            .map { (value1, value2) -> constructor.call(value1, value2) }
+            .map { arguments -> val (arg1, arg2) = arguments; constructor.call(arg1, arg2) }
         }
 
         3 -> {
@@ -50,7 +50,7 @@ class ObjectStream {
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> listOf(value1, value2, value3) } }
-            .map { (value1, value2, value3) -> constructor.call(value1, value2, value3) }
+            .map { arguments -> val (arg1, arg2, arg3) = arguments; constructor.call(arg1, arg2, arg3) }
         }
 
         4 -> {
@@ -60,7 +60,7 @@ class ObjectStream {
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> Triple(value1, value2, value3) } }
             .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> listOf(value1, value2, value3, fourthValue) } }
-            .map { (value1, value2, value3, value4) -> constructor.call(value1, value2, value3, value4) }
+            .map { arguments -> val (arg1, arg2, arg3, arg4) = arguments; constructor.call(arg1, arg2, arg3, arg4) }
         }
 
         else -> {
