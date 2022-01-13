@@ -60,7 +60,7 @@ class ObjectStream {
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> listOf(value1, value2, value3) } }
-            .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> listOf(value1, value2, value3, fourthValue) } }
+            .flatMap { list3 -> property4.values.map { value4 -> list3 + value4 } }
             .map { constructor.newInstance(it) }
         }
 
