@@ -1,0 +1,14 @@
+# Project files
+.gradle/
+.idea/
+build/
+out/
+
+# macOS
+.DS_Store
+
+# Windows
+thumbs.db
+
+# Approvals
+*.received.*
