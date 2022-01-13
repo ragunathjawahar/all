@@ -10,8 +10,8 @@ At the moment, this project is the outcome of the limitations of my search skill
 val coffees = ObjectStream
   .of(Coffee::class)
   .property("estate", "Attikan")
-  .property("roast", Light, Medium, Dark)
-  .property("grindSize", Fine, MediumFine, Medium, Coarse)
+  .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
+  .property("grindSize", GrindSize.Fine, GrindSize.MediumFine, GrindSize.Medium, GrindSize.Coarse)
   .generate()
 
 coffees.onEach(::println)
