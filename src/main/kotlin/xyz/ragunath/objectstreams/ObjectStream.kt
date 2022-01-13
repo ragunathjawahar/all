@@ -34,7 +34,7 @@ class ObjectStream {
 
           return property1.values
             .map { listOf(it) }
-            .map { arguments -> val (arg1) = arguments; constructor.call(arg1) }
+            .map { constructor.newInstance(it) }
         }
 
         2 -> {
@@ -42,7 +42,7 @@ class ObjectStream {
 
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> listOf(value1, value2) } }
-            .map { arguments -> val (arg1, arg2) = arguments; constructor.call(arg1, arg2) }
+            .map { constructor.newInstance(it) }
         }
 
         3 -> {
@@ -51,7 +51,7 @@ class ObjectStream {
           property1.values
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> listOf(value1, value2, value3) } }
-            .map { arguments -> val (arg1, arg2, arg3) = arguments; constructor.call(arg1, arg2, arg3) }
+            .map { constructor.newInstance(it) }
         }
 
         4 -> {
