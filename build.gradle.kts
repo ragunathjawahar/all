@@ -35,6 +35,8 @@ dependencies {
   testImplementation("com.approvaltests:approvaltests:12.4.1")
 
   testImplementation("com.google.truth:truth:1.1.3")
+
+  testImplementation("io.arrow-kt:arrow-core:1.0.1")
 }
 
 tasks.test {
