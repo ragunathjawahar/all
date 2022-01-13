@@ -34,7 +34,9 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          return start
+          val finalList = start
+
+          return finalList
             .map { constructor.newInstance(it) }
         }
 
@@ -45,7 +47,9 @@ class ObjectStream {
 
           val a = start.productOf(property2.values)
 
-          a
+          val finalList = a
+
+          finalList
             .map { constructor.newInstance(it) }
         }
 
@@ -57,7 +61,9 @@ class ObjectStream {
           val a = start.productOf(property2.values)
           val b = a.productOf(property3.values)
 
-          b
+          val finalList = b
+
+          finalList
             .map { constructor.newInstance(it) }
         }
 
@@ -70,7 +76,9 @@ class ObjectStream {
           val b = a.productOf(property3.values)
           val c = b.productOf(property4.values)
 
-          c
+          val finalList = c
+
+          finalList
             .map { constructor.newInstance(it) }
         }
 
