@@ -2,6 +2,38 @@
 
 At the moment, this project is the outcome of the limitations of my search skills.
 
+## API
+
+### Usage
+
+```kotlin
+val coffees = ObjectStream
+  .of(Coffee::class)
+  .property("estate", "Attikan")
+  .property("roast", Light, Medium, Dark)
+  .property("grindSize", Fine, MediumFine, Medium, Coarse)
+  .generate()
+
+coffees.onEach(::println)
+```
+
+### Output
+
+```kotlin
+Coffee(estate=Attikan, roast=Light, grindSize=Fine)
+Coffee(estate=Attikan, roast=Light, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Light, grindSize=Medium)
+Coffee(estate=Attikan, roast=Light, grindSize=Coarse)
+Coffee(estate=Attikan, roast=Medium, grindSize=Fine)
+Coffee(estate=Attikan, roast=Medium, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Medium, grindSize=Medium)
+Coffee(estate=Attikan, roast=Medium, grindSize=Coarse)
+Coffee(estate=Attikan, roast=Dark, grindSize=Fine)
+Coffee(estate=Attikan, roast=Dark, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Dark, grindSize=Medium)
+Coffee(estate=Attikan, roast=Dark, grindSize=Coarse)
+```
+
 ## License
 
 ```
