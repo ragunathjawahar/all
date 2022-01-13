@@ -4,5 +4,6 @@
   <CurrentIssues>
     <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$3</ID>
     <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$4</ID>
+    <ID>MaxLineLength:ObjectStream.kt$ObjectStream.Builder$.</ID>
   </CurrentIssues>
 </SmellBaseline>
