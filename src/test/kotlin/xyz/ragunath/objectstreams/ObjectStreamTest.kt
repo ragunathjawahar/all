@@ -141,7 +141,9 @@ class ObjectStreamTest {
       val tuple4s = tuple4Builder.generate()
 
       // then
-      Approvals.verify(tuple4s)
+      Approvals.verifyAll(tuple4s.toTypedArray()) { (first, second, third, fourth) ->
+        "$first, $second, $third, $fourth"
+      }
     }
   }
 }
