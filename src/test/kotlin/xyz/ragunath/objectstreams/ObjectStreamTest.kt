@@ -1,6 +1,7 @@
 package xyz.ragunath.objectstreams
 
 import arrow.core.Tuple4
+import arrow.core.Tuple7
 import com.google.common.truth.Truth.assertThat
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
@@ -143,6 +144,31 @@ class ObjectStreamTest {
       // then
       Approvals.verifyAll(tuple4s.toTypedArray()) { (first, second, third, fourth) ->
         "$first, $second, $third, $fourth"
+      }
+    }
+  }
+
+  @Nested
+  inner class AnyNumberOfProperties {
+    @Test
+    fun `tuple 7`() {
+      // given
+      val tuple7Builder = ObjectStream
+        .of(Tuple7::class)
+        .property("first", 1)
+        .property("second", 1, 2)
+        .property("third", 1, 2, 3)
+        .property("fourth", 1, 2, 3, 4)
+        .property("fifth", 1, 2, 3, 4, 5)
+        .property("sixth", 1, 2, 3, 4, 5, 6)
+        .property("seventh", 1, 2, 3, 4, 5, 6, 7)
+
+      // when
+      val tuple7s = tuple7Builder.generate()
+
+      // then
+      Approvals.verifyAll(tuple7s.toTypedArray()) { (first, second, third, fourth, fifth, sixth, seventh) ->
+        "$first-$second-$third-$fourth-$fifth-$sixth-$seventh"
       }
     }
   }
