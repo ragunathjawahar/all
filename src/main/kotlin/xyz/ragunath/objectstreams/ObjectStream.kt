@@ -36,14 +36,14 @@ class ObjectStream {
         2 -> {
           val (first, second) = properties
           val twoProperties = first.values.flatMap { firstValue ->
-            second.values.map { secondValue -> firstValue to secondValue }.toList()
+            second.values.map { secondValue -> firstValue to secondValue }
           }
           twoProperties.map { (first, second) -> constructor.call(first, second) }
         }
         3 -> {
           val (first, second, third) = properties
           val twoProperties = first.values.flatMap { firstValue ->
-            second.values.map { secondValue -> firstValue to secondValue }.toList()
+            second.values.map { secondValue -> firstValue to secondValue }
           }
           val threeProperties = twoProperties.flatMap { firstTwoValues ->
             val (firstValue, secondValue) = firstTwoValues
@@ -54,7 +54,7 @@ class ObjectStream {
         4 -> {
           val (first, second, third, fourth) = properties
           val twoProperties = first.values.flatMap { firstValue ->
-            second.values.map { secondValue -> firstValue to secondValue }.toList()
+            second.values.map { secondValue -> firstValue to secondValue }
           }
           val threeProperties = twoProperties.flatMap { firstTwoValues ->
             val (firstValue, secondValue) = firstTwoValues
