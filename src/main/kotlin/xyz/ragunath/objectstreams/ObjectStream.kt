@@ -36,8 +36,7 @@ class ObjectStream {
 
           val finalList = start
 
-          return finalList
-            .map { constructor.newInstance(it) }
+          return finalList.newInstances(constructor)
         }
 
         2 -> {
@@ -49,8 +48,7 @@ class ObjectStream {
 
           val finalList = a
 
-          finalList
-            .map { constructor.newInstance(it) }
+          finalList.newInstances(constructor)
         }
 
         3 -> {
@@ -63,8 +61,7 @@ class ObjectStream {
 
           val finalList = b
 
-          finalList
-            .map { constructor.newInstance(it) }
+          finalList.newInstances(constructor)
         }
 
         4 -> {
@@ -78,8 +75,7 @@ class ObjectStream {
 
           val finalList = c
 
-          finalList
-            .map { constructor.newInstance(it) }
+          finalList.newInstances(constructor)
         }
 
         else -> {
@@ -90,6 +86,12 @@ class ObjectStream {
 
     private fun List<List<Any?>>.productOf(newList: List<Any?>): List<List<Any?>> {
       return this.flatMap { accumulatedValues -> newList.map { newValue -> accumulatedValues + newValue } }
+    }
+
+    private fun List<List<Any?>>.newInstances(
+      constructor: KFunction<T>
+    ): List<T> {
+      return map { constructor.newInstance(it) }
     }
 
     private fun KFunction<T>.newInstance(
