@@ -44,7 +44,7 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          val a = start.productOf(property2.values)
+          val a = start.product(property2.values)
 
           val finalList = a
 
@@ -56,8 +56,8 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          val a = start.productOf(property2.values)
-          val b = a.productOf(property3.values)
+          val a = start.product(property2.values)
+          val b = a.product(property3.values)
 
           val finalList = b
 
@@ -69,9 +69,9 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          val a = start.productOf(property2.values)
-          val b = a.productOf(property3.values)
-          val c = b.productOf(property4.values)
+          val a = start.product(property2.values)
+          val b = a.product(property3.values)
+          val c = b.product(property4.values)
 
           val finalList = c
 
@@ -84,7 +84,7 @@ class ObjectStream {
       }
     }
 
-    private fun List<List<Any?>>.productOf(newList: List<Any?>): List<List<Any?>> {
+    private fun List<List<Any?>>.product(newList: List<Any?>): List<List<Any?>> {
       return this.flatMap { accumulatedValues -> newList.map { newValue -> accumulatedValues + newValue } }
     }
 
