@@ -8,6 +8,8 @@ buildscript {
 
 plugins {
   kotlin("jvm") version "1.6.10"
+  `java-library`
+
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
   id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
   id("jacoco")
