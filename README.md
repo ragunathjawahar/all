@@ -1,5 +1,7 @@
 # Object Streams
 
+*Super experimental! no guarantees to the public API surface.*
+
 At the moment, this project is the outcome of the limitations of my search skills.
 
 ## API
@@ -20,18 +22,18 @@ coffees.onEach(::println)
 ### Output
 
 ```kotlin
-Coffee(estate=Attikan, roast=Light, grindSize=Fine)
-Coffee(estate=Attikan, roast=Light, grindSize=MediumFine)
-Coffee(estate=Attikan, roast=Light, grindSize=Medium)
-Coffee(estate=Attikan, roast=Light, grindSize=Coarse)
-Coffee(estate=Attikan, roast=Medium, grindSize=Fine)
-Coffee(estate=Attikan, roast=Medium, grindSize=MediumFine)
-Coffee(estate=Attikan, roast=Medium, grindSize=Medium)
-Coffee(estate=Attikan, roast=Medium, grindSize=Coarse)
-Coffee(estate=Attikan, roast=Dark, grindSize=Fine)
-Coffee(estate=Attikan, roast=Dark, grindSize=MediumFine)
-Coffee(estate=Attikan, roast=Dark, grindSize=Medium)
-Coffee(estate=Attikan, roast=Dark, grindSize=Coarse)
+Coffee(estate = Attikan, roast = Light, grindSize = Fine)
+Coffee(estate = Attikan, roast = Light, grindSize = MediumFine)
+Coffee(estate = Attikan, roast = Light, grindSize = Medium)
+Coffee(estate = Attikan, roast = Light, grindSize = Coarse)
+Coffee(estate = Attikan, roast = Medium, grindSize = Fine)
+Coffee(estate = Attikan, roast = Medium, grindSize = MediumFine)
+Coffee(estate = Attikan, roast = Medium, grindSize = Medium)
+Coffee(estate = Attikan, roast = Medium, grindSize = Coarse)
+Coffee(estate = Attikan, roast = Dark, grindSize = Fine)
+Coffee(estate = Attikan, roast = Dark, grindSize = MediumFine)
+Coffee(estate = Attikan, roast = Dark, grindSize = Medium)
+Coffee(estate = Attikan, roast = Dark, grindSize = Coarse)
 ```
 
 ## License
