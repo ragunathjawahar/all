@@ -29,17 +29,7 @@ class ObjectStream {
       val constructor = clazz.constructors.first()
 
       return when (propertyCount) {
-        1 -> {
-          val (property1) = properties
-
-          val start = property1.values.map(::listOf)
-
-          val finalList = start
-
-          return finalList.newInstances(constructor)
-        }
-
-        2, 3, 4 -> {
+        1, 2, 3, 4 -> {
           val firstProperty = properties.first()
           val remainingProperties = properties.drop(1)
 
