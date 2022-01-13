@@ -5,5 +5,6 @@
     <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$3</ID>
     <ID>MagicNumber:ObjectStream.kt$ObjectStream.Builder$4</ID>
     <ID>MaxLineLength:ObjectStream.kt$ObjectStream.Builder$.</ID>
+    <ID>SpreadOperator:ObjectStream.kt$ObjectStream.Builder$(*arguments.toTypedArray())</ID>
   </CurrentIssues>
 </SmellBaseline>
