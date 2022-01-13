@@ -3,6 +3,7 @@ package xyz.ragunath.objectstreams
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import xyz.ragunath.objectstreams.fixtures.Age
 
 class ObjectStreamTest {
   @Nested
@@ -26,6 +27,20 @@ class ObjectStreamTest {
       // then
       assertThat(doubles)
         .containsExactly(1.0, 2.0, 3.0)
+        .inOrder()
+    }
+
+    @Test
+    fun `value objects`() {
+      // given & when
+      val ages = ObjectStream
+        .of(Age::class)
+        .property("value", 1, 2, 3)
+        .generate()
+
+      // then
+      assertThat(ages)
+        .containsExactly(Age(1), Age(2), Age(3))
         .inOrder()
     }
   }

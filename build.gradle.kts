@@ -13,6 +13,7 @@ val junitVersion = "5.8.2"
 
 dependencies {
   implementation(kotlin("stdlib"))
+  implementation(kotlin("reflect"))
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
   testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
