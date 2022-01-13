@@ -4,6 +4,9 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import xyz.ragunath.objectstreams.fixtures.Age
+import xyz.ragunath.objectstreams.fixtures.Coffee
+import xyz.ragunath.objectstreams.fixtures.GrindSize
+import xyz.ragunath.objectstreams.fixtures.Roast
 
 class ObjectStreamTest {
   @Nested
@@ -81,6 +84,40 @@ class ObjectStreamTest {
           "B" to 1,
           "B" to 2,
           "B" to 3,
+        )
+        .inOrder()
+    }
+  }
+
+  @Nested
+  inner class ThreeProperties {
+    @Test
+    fun coffee() {
+      // given
+      val coffeeBuilder = ObjectStream
+        .of(Coffee::class)
+        .property("estate", "Attikan")
+        .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
+        .property("grindSize", GrindSize.Fine, GrindSize.MediumFine, GrindSize.Medium, GrindSize.Coarse)
+
+      // when
+      val coffee = coffeeBuilder.generate()
+
+      // then
+      assertThat(coffee)
+        .containsExactly(
+          Coffee("Attikan", Roast.Light, GrindSize.Fine),
+          Coffee("Attikan", Roast.Light, GrindSize.MediumFine),
+          Coffee("Attikan", Roast.Light, GrindSize.Medium),
+          Coffee("Attikan", Roast.Light, GrindSize.Coarse),
+          Coffee("Attikan", Roast.Medium, GrindSize.Fine),
+          Coffee("Attikan", Roast.Medium, GrindSize.MediumFine),
+          Coffee("Attikan", Roast.Medium, GrindSize.Medium),
+          Coffee("Attikan", Roast.Medium, GrindSize.Coarse),
+          Coffee("Attikan", Roast.Dark, GrindSize.Fine),
+          Coffee("Attikan", Roast.Dark, GrindSize.MediumFine),
+          Coffee("Attikan", Roast.Dark, GrindSize.Medium),
+          Coffee("Attikan", Roast.Dark, GrindSize.Coarse),
         )
         .inOrder()
     }

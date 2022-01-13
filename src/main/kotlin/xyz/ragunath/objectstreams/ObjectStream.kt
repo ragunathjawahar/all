@@ -32,10 +32,20 @@ class ObjectStream {
         return first.values.map { value -> constructor.call(value) }
       } else if (propertyCount == 2) {
         val (first, second) = properties
-        val allParameters = first.values.flatMap { firstValue ->
+        val twoParameters = first.values.flatMap { firstValue ->
           second.values.map { secondValue -> firstValue to secondValue }.toList()
         }
-        allParameters.map { (first, second) -> constructor.call(first, second) }
+        twoParameters.map { (first, second) -> constructor.call(first, second) }
+      } else if (propertyCount == 3) {
+        val (first, second, third) = properties
+        val twoParameters = first.values.flatMap { firstValue ->
+          second.values.map { secondValue -> firstValue to secondValue }.toList()
+        }
+        val threeParameters = twoParameters.flatMap { firstTwoValues ->
+          val (firstValue, secondValue) = firstTwoValues
+          third.values.map { thirdValue -> Triple(firstValue, secondValue, thirdValue) }
+        }
+        threeParameters.map { (first, second, three) -> constructor.call(first, second, three) }
       } else {
         throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
       }
