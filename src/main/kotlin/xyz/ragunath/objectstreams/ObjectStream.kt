@@ -30,7 +30,7 @@ class ObjectStream {
 
       return when (propertyCount) {
         1 -> {
-          val first = properties.first()
+          val (first) = properties
           return first.values.map { value -> constructor.call(value) }
         }
         2 -> {
