@@ -61,7 +61,7 @@ class ObjectStream {
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> Triple(value1, value2, value3) } }
             .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> listOf(value1, value2, value3, fourthValue) } }
-            .map { arguments -> newInstance(constructor, arguments) }
+            .map { constructor.newInstance(it) }
         }
 
         else -> {
@@ -70,11 +70,10 @@ class ObjectStream {
       }
     }
 
-    private fun newInstance(
-      constructor: KFunction<T>,
+    private fun KFunction<T>.newInstance(
       arguments: List<Any?>
     ): T {
-      return constructor.call(*arguments.toTypedArray())
+      return call(*arguments.toTypedArray())
     }
   }
 }
