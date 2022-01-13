@@ -4,6 +4,12 @@
 
 At the moment, this project is the outcome of the limitations of my search skills.
 
+## Building an artifact
+
+```
+./gradlew jar
+```
+
 ## API
 
 ### Usage
