@@ -64,8 +64,9 @@ class ObjectStream {
 
           val start = property1.values.map(::listOf)
 
-          start
-            .flatMap { list1 -> property2.values.map { value2 -> list1 + value2 } }
+          val a = start.productOf(property2.values)
+
+          a
             .flatMap { list2 -> property3.values.map { value3 -> list2 + value3 } }
             .flatMap { list3 -> property4.values.map { value4 -> list3 + value4 } }
             .map { constructor.newInstance(it) }
@@ -75,6 +76,10 @@ class ObjectStream {
           throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
         }
       }
+    }
+
+    private fun List<List<Any?>>.productOf(newList: List<Any?>): List<List<Any?>> {
+      return this.flatMap { accumulatedValues -> newList.map { newValue -> accumulatedValues + newValue } }
     }
 
     private fun KFunction<T>.newInstance(
