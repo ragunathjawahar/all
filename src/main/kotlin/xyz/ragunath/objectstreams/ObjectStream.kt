@@ -1,6 +1,7 @@
 package xyz.ragunath.objectstreams
 
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
 
 class ObjectStream {
   companion object {
@@ -60,13 +61,23 @@ class ObjectStream {
             .flatMap { value1 -> property2.values.map { value2 -> value1 to value2 } }
             .flatMap { (value1, value2) -> property3.values.map { value3 -> Triple(value1, value2, value3) } }
             .flatMap { (value1, value2, value3) -> property4.values.map { fourthValue -> listOf(value1, value2, value3, fourthValue) } }
-            .map { arguments -> val (arg1, arg2, arg3, arg4) = arguments; constructor.call(arg1, arg2, arg3, arg4) }
+            .map { arguments -> val (arg1, arg2, arg3, arg4) = arguments; newInstance(constructor, arg1, arg2, arg3, arg4) }
         }
 
         else -> {
           throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
         }
       }
+    }
+
+    private fun newInstance(
+      constructor: KFunction<T>,
+      arg1: Any?,
+      arg2: Any?,
+      arg3: Any?,
+      arg4: Any?
+    ): T {
+      return constructor.call(arg1, arg2, arg3, arg4)
     }
   }
 }
