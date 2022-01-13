@@ -25,26 +25,17 @@ class ObjectStream {
     }
 
     fun generate(): List<T> {
-      val propertyCount = properties.size
       val constructor = clazz.constructors.first()
 
-      return when (propertyCount) {
-        1, 2, 3, 4 -> {
-          val firstProperty = properties.first()
-          val remainingProperties = properties.drop(1)
+      val firstProperty = properties.first()
+      val remainingProperties = properties.drop(1)
 
-          var accumulator = firstProperty.values.map(::listOf)
-          for (property in remainingProperties) {
-            accumulator = accumulator.product(property.values)
-          }
-
-          accumulator.newInstances(constructor)
-        }
-
-        else -> {
-          throw UnsupportedOperationException("Uh oh… we don't support streams with $propertyCount yet.")
-        }
+      var accumulator = firstProperty.values.map(::listOf)
+      for (property in remainingProperties) {
+        accumulator = accumulator.product(property.values)
       }
+
+      return accumulator.newInstances(constructor)
     }
 
     private fun List<List<Any?>>.product(newList: List<Any?>): List<List<Any?>> {
