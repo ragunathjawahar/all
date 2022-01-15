@@ -5,10 +5,6 @@ import kotlin.reflect.KFunction
 
 class ObjectStream {
   companion object {
-    fun <T> of(first: T, vararg remaining: T): List<T> {
-      return listOf(first, *remaining)
-    }
-
     fun <T : Any> of(clazz: KClass<T>): Builder<T> {
       return Builder(clazz)
     }
