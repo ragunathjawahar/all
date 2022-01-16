@@ -29,15 +29,12 @@ coffeeList.onEach(::println)
 
 ```kotlin
 Coffee(estate = Attikan, roast = Light, grindSize = Fine)
-Coffee(estate = Attikan, roast = Light, grindSize = MediumFine)
 Coffee(estate = Attikan, roast = Light, grindSize = Medium)
 Coffee(estate = Attikan, roast = Light, grindSize = Coarse)
 Coffee(estate = Attikan, roast = Medium, grindSize = Fine)
-Coffee(estate = Attikan, roast = Medium, grindSize = MediumFine)
 Coffee(estate = Attikan, roast = Medium, grindSize = Medium)
 Coffee(estate = Attikan, roast = Medium, grindSize = Coarse)
 Coffee(estate = Attikan, roast = Dark, grindSize = Fine)
-Coffee(estate = Attikan, roast = Dark, grindSize = MediumFine)
 Coffee(estate = Attikan, roast = Dark, grindSize = Medium)
 Coffee(estate = Attikan, roast = Dark, grindSize = Coarse)
 ```
