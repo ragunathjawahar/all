@@ -1,4 +1,4 @@
-package xyz.ragunath.objectstreams
+package xyz.ragunath.all
 
 import arrow.core.Tuple4
 import arrow.core.Tuple7
@@ -6,18 +6,18 @@ import com.google.common.truth.Truth.assertThat
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import xyz.ragunath.objectstreams.fixtures.Age
-import xyz.ragunath.objectstreams.fixtures.Coffee
-import xyz.ragunath.objectstreams.fixtures.GrindSize
-import xyz.ragunath.objectstreams.fixtures.Roast
+import xyz.ragunath.all.fixtures.Age
+import xyz.ragunath.all.fixtures.Coffee
+import xyz.ragunath.all.fixtures.GrindSize
+import xyz.ragunath.all.fixtures.Roast
 
-class ObjectStreamTest {
+class AllTest {
   @Nested
   inner class SingleProperty {
     @Test
     fun `value objects`() {
       // given
-      val agesBuilder = ObjectStream
+      val agesBuilder = All
         .of(Age::class)
         .property("value", 1, 2, 3)
 
@@ -33,7 +33,7 @@ class ObjectStreamTest {
     @Test
     fun `age with one value`() {
       // given
-      val ageBuilder = ObjectStream
+      val ageBuilder = All
         .of(Age::class)
         .property("value", 1)
 
@@ -48,7 +48,7 @@ class ObjectStreamTest {
     @Test
     fun pairs() {
       // given
-      val pairsBuilder = ObjectStream
+      val pairsBuilder = All
         .of(Pair::class)
         .property("first", "A", "B")
         .property("second", 1, 2, 3)
@@ -75,7 +75,7 @@ class ObjectStreamTest {
     @Test
     fun coffee() {
       // given
-      val coffeeBuilder = ObjectStream
+      val coffeeBuilder = All
         .of(Coffee::class)
         .property("estate", "Attikan")
         .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
@@ -109,7 +109,7 @@ class ObjectStreamTest {
     @Test
     fun `tuple 4`() {
       // given
-      val tuple4Builder = ObjectStream
+      val tuple4Builder = All
         .of(Tuple4::class)
         .property("first", 1, 2, 3, 4)
         .property("second", 'A', 'B', 'C', 'D')
@@ -131,7 +131,7 @@ class ObjectStreamTest {
     @Test
     fun `tuple 7`() {
       // given
-      val tuple7Builder = ObjectStream
+      val tuple7Builder = All
         .of(Tuple7::class)
         .property("first", 1)
         .property("second", 1, 2)

@@ -1,4 +1,4 @@
-package xyz.ragunath.objectstreams.fixtures
+package xyz.ragunath.all.fixtures
 
 enum class Roast {
   Light, Medium, Dark

@@ -2,6 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>SpreadOperator:ObjectStream.kt$ObjectStream.Builder$(*arguments.toTypedArray())</ID>
+    <ID>SpreadOperator:All.kt$All.Builder$(*arguments.toTypedArray())</ID>
   </CurrentIssues>
 </SmellBaseline>

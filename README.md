@@ -1,4 +1,4 @@
-# Object Streams
+# All
 
 *Super experimental! no guarantees to the public API surface.*
 
@@ -15,14 +15,14 @@ At the moment, this project is the outcome of the limitations of my search skill
 ### Usage
 
 ```kotlin
-val coffees = ObjectStream
+val coffeeList = All
   .of(Coffee::class)
   .property("estate", "Attikan")
   .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
-  .property("grindSize", GrindSize.Fine, GrindSize.MediumFine, GrindSize.Medium, GrindSize.Coarse)
+  .property("grindSize", GrindSize.Fine, GrindSize.Medium, GrindSize.Coarse)
   .generate()
 
-coffees.onEach(::println)
+coffeeList.onEach(::println)
 ```
 
 ### Output

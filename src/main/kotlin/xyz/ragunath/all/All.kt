@@ -1,9 +1,9 @@
-package xyz.ragunath.objectstreams
+package xyz.ragunath.all
 
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
-class ObjectStream {
+class All {
   companion object {
     fun <T : Any> of(clazz: KClass<T>): Builder<T> {
       return Builder(clazz)

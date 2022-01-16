@@ -1,1 +1,1 @@
-rootProject.name = "object-streams"
+rootProject.name = "all"
