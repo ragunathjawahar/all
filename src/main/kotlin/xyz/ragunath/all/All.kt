@@ -1,6 +1,5 @@
 package xyz.ragunath.all
 
-import xyz.ragunath.all.one.First
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
@@ -8,10 +7,6 @@ class All {
   companion object {
     fun <T : Any> of(clazz: KClass<T>): Builder<T> {
       return Builder(clazz)
-    }
-
-    fun <A, OUT> of(creator: (A) -> OUT): First<A, OUT> {
-      return First(creator)
     }
   }
 

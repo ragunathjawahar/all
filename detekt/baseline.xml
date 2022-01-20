@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>MemberNameEqualsClassName:Api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, OUT&gt;</ID>
     <ID>SpreadOperator:All.kt$All.Builder$(*arguments.toTypedArray())</ID>
   </CurrentIssues>
 </SmellBaseline>

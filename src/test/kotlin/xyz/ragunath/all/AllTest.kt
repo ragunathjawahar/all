@@ -10,6 +10,8 @@ import objects.Roast
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import xyz.ragunath.all.one.of
+import xyz.ragunath.all.two.of
 
 class AllTest {
   @Nested
@@ -165,5 +167,25 @@ class AllTest {
         Age(2),
         Age(3),
       )
+  }
+
+  @Test
+  fun `two parameters`() {
+    // give & when
+    val pairCreator = { a: Int, b: Char -> a to b }
+    val pairs = All
+      .of(pairCreator)
+      .first(listOf(1, 2))
+      .last(listOf('a', 'b'))
+
+    // then
+    assertThat(pairs)
+      .containsExactly(
+        1 to 'a',
+        1 to 'b',
+        2 to 'a',
+        2 to 'b',
+      )
+      .inOrder()
   }
 }
