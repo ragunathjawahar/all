@@ -150,4 +150,20 @@ class AllTest {
       }
     }
   }
+
+  @Test
+  fun `just one`() {
+    // given & when
+    val ages = All
+      .of(::Age)
+      .last(listOf(1, 2, 3))
+
+    // then
+    assertThat(ages)
+      .containsExactly(
+        Age(1),
+        Age(2),
+        Age(3),
+      )
+  }
 }

@@ -8,6 +8,10 @@ class All {
     fun <T : Any> of(clazz: KClass<T>): Builder<T> {
       return Builder(clazz)
     }
+
+    fun <A, OUT> of(creator: (A) -> OUT): First<A, OUT> {
+      return First(creator)
+    }
   }
 
   internal class Property<X>(val name: String, val values: List<X>)
@@ -49,5 +53,11 @@ class All {
     ): T {
       return call(*arguments.toTypedArray())
     }
+  }
+}
+
+class First<A, OUT>(private val creator: (A) -> OUT) {
+  fun last(values: List<A>): List<OUT> {
+    return values.map(creator::invoke)
   }
 }
