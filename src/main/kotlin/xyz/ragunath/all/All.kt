@@ -1,5 +1,6 @@
 package xyz.ragunath.all
 
+import xyz.ragunath.all.one.First
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
@@ -53,11 +54,5 @@ class All {
     ): T {
       return call(*arguments.toTypedArray())
     }
-  }
-}
-
-class First<A, OUT>(private val creator: (A) -> OUT) {
-  fun last(values: List<A>): List<OUT> {
-    return values.map(creator::invoke)
   }
 }
