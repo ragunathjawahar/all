@@ -3,13 +3,13 @@ package xyz.ragunath.all
 import arrow.core.Tuple4
 import arrow.core.Tuple7
 import com.google.common.truth.Truth.assertThat
+import objects.Age
+import objects.Coffee
+import objects.GrindSize
+import objects.Roast
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import xyz.ragunath.all.fixtures.Age
-import xyz.ragunath.all.fixtures.Coffee
-import xyz.ragunath.all.fixtures.GrindSize
-import xyz.ragunath.all.fixtures.Roast
 
 class AllTest {
   @Nested

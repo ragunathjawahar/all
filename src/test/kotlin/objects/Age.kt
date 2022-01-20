@@ -1,4 +1,4 @@
-package xyz.ragunath.all.fixtures
+package objects
 
 @JvmInline
 value class Age(val value: Int)
