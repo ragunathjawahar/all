@@ -1,7 +1,6 @@
 package xyz.ragunath.all
 
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
 class All {
   companion object {
@@ -26,28 +25,35 @@ class All {
       val firstProperty = properties.first()
       val remainingProperties = properties.drop(1)
 
-      var accumulator = firstProperty.values.map(::listOf)
-      for (property in remainingProperties) {
-        accumulator = accumulator.product(property.values)
-      }
-
-      return accumulator.newInstances(constructor)
-    }
-
-    private fun List<List<Any?>>.product(newList: List<Any?>): List<List<Any?>> {
-      return this.flatMap { accumulatedValues -> newList.map { newValue -> accumulatedValues + newValue } }
-    }
-
-    private fun List<List<Any?>>.newInstances(
-      constructor: KFunction<T>
-    ): List<T> {
-      return map { constructor.newInstance(it) }
-    }
-
-    private fun KFunction<T>.newInstance(
-      arguments: List<Any?>
-    ): T {
-      return call(*arguments.toTypedArray())
+      return combine(
+        firstProperty.values.map(::listOf),
+        remainingProperties.map { it.values }
+      ) { arguments -> constructor.call(*arguments.toTypedArray()) }
     }
   }
+}
+
+internal fun <T> combine(
+  firstList: List<List<Any?>>,
+  remainingLists: List<List<Any?>>,
+  creator: (List<Any?>) -> T
+): List<T> {
+  var accumulator = firstList
+  for (list in remainingLists) {
+    accumulator = accumulator.product(list)
+  }
+
+  return accumulator.createInstances(creator)
+}
+
+private fun List<List<Any?>>.product(newList: List<Any?>): List<List<Any?>> {
+  return this.flatMap { accumulatedValues ->
+    newList.map { newValue -> accumulatedValues + newValue }
+  }
+}
+
+private fun <T> List<List<Any?>>.createInstances(
+  creator: (List<Any?>) -> T
+): List<T> {
+  return this.map(creator)
 }

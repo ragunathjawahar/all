@@ -11,6 +11,7 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import xyz.ragunath.all.one.of
+import xyz.ragunath.all.three.of
 import xyz.ragunath.all.two.of
 
 class AllTest {
@@ -187,5 +188,24 @@ class AllTest {
         2 to 'b',
       )
       .inOrder()
+  }
+
+  @Test
+  fun `three parameters`() {
+    // given & when
+    val tripleCreator = { a: Int, b: Char, c: Double -> Triple(a, b, c) }
+    val triples = All.of(tripleCreator)
+      .first(listOf(1))
+      .second(listOf('a', 'b'))
+      .last(listOf(1.0, 2.0))
+
+    // then
+    assertThat(triples)
+      .containsExactly(
+        Triple(1, 'a', 1.0),
+        Triple(1, 'a', 2.0),
+        Triple(1, 'b', 1.0),
+        Triple(1, 'b', 2.0),
+      )
   }
 }
