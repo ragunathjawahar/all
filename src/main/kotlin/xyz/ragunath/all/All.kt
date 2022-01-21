@@ -22,7 +22,7 @@ class All {
     fun generate(): List<T> {
       val constructor = clazz.constructors.first()
 
-      val firstList = properties.first().values.map(::listOf)
+      val firstList = properties.first().values
       val remainingLists = properties.drop(1).map { it.values }
 
       return combine(firstList, remainingLists) { arguments ->
@@ -33,11 +33,11 @@ class All {
 }
 
 internal fun <T> combine(
-  firstList: List<List<Any?>>,
+  firstList: List<Any?> = emptyList(),
   remainingLists: List<List<Any?>>,
   creator: (List<Any?>) -> T
 ): List<T> {
-  var accumulator = firstList
+  var accumulator = firstList.map(::listOf)
   for (list in remainingLists) {
     accumulator = accumulator.product(list)
   }

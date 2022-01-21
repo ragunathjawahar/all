@@ -28,7 +28,7 @@ class Third<A, B, C, OUT>(
   private val bValues: List<B>
 ) {
   fun last(cValues: List<C>): List<OUT> {
-    return combine(aValues.map(::listOf), listOf(bValues, cValues)) { (a, b, c) ->
+    return combine(aValues, listOf(bValues, cValues)) { (a, b, c) ->
       creator.invoke(a as A, b as B, c as C)
     }
   }

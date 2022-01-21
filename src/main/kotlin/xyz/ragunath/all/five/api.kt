@@ -53,7 +53,7 @@ class Fifth<A, B, C, D, E, OUT>(
   private val dValues: List<Int>
 ) {
   fun last(eValues: List<E>): List<OUT> {
-    return combine(listOf(aValues), listOf(bValues, cValues, dValues, eValues)) { (a, b, c, d, e) ->
+    return combine(aValues, listOf(bValues, cValues, dValues, eValues)) { (a, b, c, d, e) ->
       creator.invoke(a as A, b as B, c as C, d as D, e as E)
     }
   }
