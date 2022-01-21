@@ -4,7 +4,11 @@
   <CurrentIssues>
     <ID>MemberNameEqualsClassName:api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, C, OUT&gt;</ID>
     <ID>MemberNameEqualsClassName:api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, OUT&gt;</ID>
+    <ID>MemberNameEqualsClassName:api.kt$First$fun first(aValues: List&lt;Int&gt;): Second&lt;A, B, C, D, E, OUT&gt;</ID>
+    <ID>MemberNameEqualsClassName:api.kt$Fourth$fun fourth(dValues: List&lt;Int&gt;): Fifth&lt;A, B, C, D, E, OUT&gt;</ID>
     <ID>MemberNameEqualsClassName:api.kt$Second$fun second(bValues: List&lt;B&gt;): Third&lt;A, B, C, OUT&gt;</ID>
+    <ID>MemberNameEqualsClassName:api.kt$Second$fun second(bValues: List&lt;Int&gt;): Third&lt;A, B, C, D, E, OUT&gt;</ID>
+    <ID>MemberNameEqualsClassName:api.kt$Third$fun third(cValues: List&lt;Int&gt;): Fourth&lt;A, B, C, D, E, OUT&gt;</ID>
     <ID>SpreadOperator:All.kt$All.Builder$(*arguments.toTypedArray())</ID>
   </CurrentIssues>
 </SmellBaseline>

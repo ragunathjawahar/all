@@ -1,6 +1,7 @@
 package xyz.ragunath.all
 
 import arrow.core.Tuple4
+import arrow.core.Tuple5
 import arrow.core.Tuple7
 import com.google.common.truth.Truth.assertThat
 import objects.Age
@@ -10,6 +11,7 @@ import objects.Roast
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import xyz.ragunath.all.five.of
 import xyz.ragunath.all.one.of
 import xyz.ragunath.all.three.of
 import xyz.ragunath.all.two.of
@@ -161,6 +163,7 @@ class AllTest {
         Age(2),
         Age(3),
       )
+      .inOrder()
   }
 
   @Test
@@ -199,5 +202,31 @@ class AllTest {
         Triple(1, 'b', 1.0),
         Triple(1, 'b', 2.0),
       )
+      .inOrder()
+  }
+
+  @Test
+  fun `five parameters`() {
+    // given & when
+    val tuple5Creator = { a: Int, b: Int, c: Int, d: Int, e: Char ->
+      Tuple5(a, b, c, d, e)
+    }
+    val tuple5s = All.of(tuple5Creator)
+      .first(listOf(1))
+      .second(listOf(2))
+      .third(listOf(3))
+      .fourth(listOf(4))
+      .last(listOf('a', 'b', 'c', 'd', 'e'))
+
+    // then
+    assertThat(tuple5s)
+      .containsExactly(
+        Tuple5(1, 2, 3, 4, 'a'),
+        Tuple5(1, 2, 3, 4, 'b'),
+        Tuple5(1, 2, 3, 4, 'c'),
+        Tuple5(1, 2, 3, 4, 'd'),
+        Tuple5(1, 2, 3, 4, 'e'),
+      )
+      .inOrder()
   }
 }
