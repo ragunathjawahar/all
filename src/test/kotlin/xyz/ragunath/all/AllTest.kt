@@ -20,8 +20,7 @@ class AllTest {
     @Test
     fun `value objects`() {
       // given
-      val agesBuilder = All
-        .of(Age::class)
+      val agesBuilder = All.of(Age::class)
         .property("value", 1, 2, 3)
 
       // when
@@ -36,8 +35,7 @@ class AllTest {
     @Test
     fun `age with one value`() {
       // given
-      val ageBuilder = All
-        .of(Age::class)
+      val ageBuilder = All.of(Age::class)
         .property("value", 1)
 
       // when & then
@@ -51,8 +49,7 @@ class AllTest {
     @Test
     fun pairs() {
       // given
-      val pairsBuilder = All
-        .of(Pair::class)
+      val pairsBuilder = All.of(Pair::class)
         .property("first", "A", "B")
         .property("second", 1, 2, 3)
 
@@ -78,8 +75,7 @@ class AllTest {
     @Test
     fun coffee() {
       // given
-      val coffeeBuilder = All
-        .of(Coffee::class)
+      val coffeeBuilder = All.of(Coffee::class)
         .property("estate", "Attikan")
         .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
         .property("grindSize", GrindSize.Fine, GrindSize.MediumFine, GrindSize.Medium, GrindSize.Coarse)
@@ -112,8 +108,7 @@ class AllTest {
     @Test
     fun `tuple 4`() {
       // given
-      val tuple4Builder = All
-        .of(Tuple4::class)
+      val tuple4Builder = All.of(Tuple4::class)
         .property("first", 1, 2, 3, 4)
         .property("second", 'A', 'B', 'C', 'D')
         .property("third", true, false)
@@ -134,8 +129,7 @@ class AllTest {
     @Test
     fun `tuple 7`() {
       // given
-      val tuple7Builder = All
-        .of(Tuple7::class)
+      val tuple7Builder = All.of(Tuple7::class)
         .property("first", 1)
         .property("second", 1, 2)
         .property("third", 1, 2, 3)
@@ -157,8 +151,7 @@ class AllTest {
   @Test
   fun `just one`() {
     // given & when
-    val ages = All
-      .of(::Age)
+    val ages = All.of(::Age)
       .last(listOf(1, 2, 3))
 
     // then
@@ -174,8 +167,7 @@ class AllTest {
   fun `two parameters`() {
     // give & when
     val pairCreator = { a: Int, b: Char -> a to b }
-    val pairs = All
-      .of(pairCreator)
+    val pairs = All.of(pairCreator)
       .first(listOf(1, 2))
       .last(listOf('a', 'b'))
 
