@@ -2,8 +2,8 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>MemberNameEqualsClassName:Api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, OUT&gt;</ID>
     <ID>MemberNameEqualsClassName:api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, C, OUT&gt;</ID>
+    <ID>MemberNameEqualsClassName:api.kt$First$fun first(aValues: List&lt;A&gt;): Second&lt;A, B, OUT&gt;</ID>
     <ID>MemberNameEqualsClassName:api.kt$Second$fun second(bValues: List&lt;B&gt;): Third&lt;A, B, C, OUT&gt;</ID>
     <ID>SpreadOperator:All.kt$All.Builder$(*arguments.toTypedArray())</ID>
   </CurrentIssues>
