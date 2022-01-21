@@ -1,6 +1,7 @@
 package xyz.ragunath.all.two
 
 import xyz.ragunath.all.All
+import xyz.ragunath.all.combine
 
 fun <A, B, OUT> All.Companion.of(creator: (A, B) -> OUT): First<A, B, OUT> {
   return First(creator)
@@ -17,6 +18,8 @@ class Second<A, B, OUT>(
   private val aValues: List<A>
 ) {
   fun last(bValues: List<B>): List<OUT> {
-    return aValues.flatMap { a -> bValues.map { b -> creator(a, b) } }
+    return combine(aValues, listOf(bValues)) { (a, b) ->
+      creator.invoke(a as A, b as B)
+    }
   }
 }
