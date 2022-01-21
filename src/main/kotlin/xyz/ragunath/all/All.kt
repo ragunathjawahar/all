@@ -22,13 +22,12 @@ class All {
     fun generate(): List<T> {
       val constructor = clazz.constructors.first()
 
-      val firstProperty = properties.first()
-      val remainingProperties = properties.drop(1)
+      val firstList = properties.first().values.map(::listOf)
+      val remainingLists = properties.drop(1).map { it.values }
 
-      return combine(
-        firstProperty.values.map(::listOf),
-        remainingProperties.map { it.values }
-      ) { arguments -> constructor.call(*arguments.toTypedArray()) }
+      return combine(firstList, remainingLists) { arguments ->
+        constructor.call(*arguments.toTypedArray())
+      }
     }
   }
 }
@@ -42,18 +41,11 @@ internal fun <T> combine(
   for (list in remainingLists) {
     accumulator = accumulator.product(list)
   }
-
-  return accumulator.createInstances(creator)
+  return accumulator.map(creator)
 }
 
 private fun List<List<Any?>>.product(newList: List<Any?>): List<List<Any?>> {
   return this.flatMap { accumulatedValues ->
     newList.map { newValue -> accumulatedValues + newValue }
   }
-}
-
-private fun <T> List<List<Any?>>.createInstances(
-  creator: (List<Any?>) -> T
-): List<T> {
-  return this.map(creator)
 }
