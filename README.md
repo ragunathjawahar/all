@@ -15,12 +15,10 @@ At the moment, this project is the outcome of the limitations of my search skill
 ### Usage
 
 ```kotlin
-val coffeeList = All
-  .of(Coffee::class)
-  .property("estate", "Attikan")
-  .property("roast", Roast.Light, Roast.Medium, Roast.Dark)
-  .property("grindSize", GrindSize.Fine, GrindSize.Medium, GrindSize.Coarse)
-  .generate()
+val coffeeList = All.of(::Coffee)
+  .first(listOf("Attikan"))
+  .second(Roast.values().toList())
+  .last(GrindSize.values().toList())
 
 coffeeList.onEach(::println)
 ```
@@ -28,15 +26,18 @@ coffeeList.onEach(::println)
 ### Output
 
 ```kotlin
-Coffee(estate = Attikan, roast = Light, grindSize = Fine)
-Coffee(estate = Attikan, roast = Light, grindSize = Medium)
-Coffee(estate = Attikan, roast = Light, grindSize = Coarse)
-Coffee(estate = Attikan, roast = Medium, grindSize = Fine)
-Coffee(estate = Attikan, roast = Medium, grindSize = Medium)
-Coffee(estate = Attikan, roast = Medium, grindSize = Coarse)
-Coffee(estate = Attikan, roast = Dark, grindSize = Fine)
-Coffee(estate = Attikan, roast = Dark, grindSize = Medium)
-Coffee(estate = Attikan, roast = Dark, grindSize = Coarse)
+Coffee(estate=Attikan, roast=Light, grindSize=Fine)
+Coffee(estate=Attikan, roast=Light, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Light, grindSize=Medium)
+Coffee(estate=Attikan, roast=Light, grindSize=Coarse)
+Coffee(estate=Attikan, roast=Medium, grindSize=Fine)
+Coffee(estate=Attikan, roast=Medium, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Medium, grindSize=Medium)
+Coffee(estate=Attikan, roast=Medium, grindSize=Coarse)
+Coffee(estate=Attikan, roast=Dark, grindSize=Fine)
+Coffee(estate=Attikan, roast=Dark, grindSize=MediumFine)
+Coffee(estate=Attikan, roast=Dark, grindSize=Medium)
+Coffee(estate=Attikan, roast=Dark, grindSize=Coarse)
 ```
 
 ## License
