@@ -1,6 +1,6 @@
-package xyz.ragunath.all.one
+package io.redgreen.all.one
 
-import xyz.ragunath.all.All
+import io.redgreen.all.All
 
 fun <A, OUT> All.Companion.of(creator: (A) -> OUT): First<A, OUT> {
   return First(creator)

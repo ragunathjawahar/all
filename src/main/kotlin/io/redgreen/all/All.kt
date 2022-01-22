@@ -1,4 +1,4 @@
-package xyz.ragunath.all
+package io.redgreen.all
 
 import kotlin.reflect.KClass
 

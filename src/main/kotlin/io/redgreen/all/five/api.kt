@@ -1,7 +1,7 @@
-package xyz.ragunath.all.five
+package io.redgreen.all.five
 
-import xyz.ragunath.all.All
-import xyz.ragunath.all.combine
+import io.redgreen.all.All
+import io.redgreen.all.combine
 
 fun <A, B, C, D, E, OUT> All.Companion.of(
   creator: (a: A, b: B, c: C, d: D, e: E) -> OUT

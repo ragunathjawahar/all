@@ -1,9 +1,14 @@
-package xyz.ragunath.all
+package io.redgreen.all
 
 import arrow.core.Tuple4
 import arrow.core.Tuple5
 import arrow.core.Tuple7
 import com.google.common.truth.Truth.assertThat
+import io.redgreen.all.five.of
+import io.redgreen.all.four.of
+import io.redgreen.all.one.of
+import io.redgreen.all.three.of
+import io.redgreen.all.two.of
 import objects.Age
 import objects.Coffee
 import objects.GrindSize
@@ -11,11 +16,6 @@ import objects.Roast
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import xyz.ragunath.all.five.of
-import xyz.ragunath.all.four.of
-import xyz.ragunath.all.one.of
-import xyz.ragunath.all.three.of
-import xyz.ragunath.all.two.of
 
 class AllTest {
   @Nested

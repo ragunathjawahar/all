@@ -1,7 +1,7 @@
-package xyz.ragunath.all.three
+package io.redgreen.all.three
 
-import xyz.ragunath.all.All
-import xyz.ragunath.all.combine
+import io.redgreen.all.All
+import io.redgreen.all.combine
 
 fun <A, B, C, OUT> All.Companion.of(creator: (a: A, b: B, c: C) -> OUT): First<A, B, C, OUT> {
   return First(creator)
