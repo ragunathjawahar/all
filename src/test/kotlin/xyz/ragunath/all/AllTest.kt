@@ -12,6 +12,7 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import xyz.ragunath.all.five.of
+import xyz.ragunath.all.four.of
 import xyz.ragunath.all.one.of
 import xyz.ragunath.all.three.of
 import xyz.ragunath.all.two.of
@@ -203,6 +204,17 @@ class AllTest {
         Triple(1, 'b', 2.0),
       )
       .inOrder()
+  }
+
+  @Test
+  fun `four parameters`() {
+    // given & when
+    val tuple4Creator = { a: Int, b: Int, c: Int, d: Char -> Tuple4(a, b, c, d) }
+    All.of(tuple4Creator)
+      .first(listOf(1))
+      .second(listOf(2))
+      .third(listOf(3))
+      .last(listOf('a', 'b', 'c', 'd'))
   }
 
   @Test
