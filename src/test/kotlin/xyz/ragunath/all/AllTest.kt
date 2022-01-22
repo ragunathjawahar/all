@@ -151,7 +151,7 @@ class AllTest {
   }
 
   @Test
-  fun `just one`() {
+  fun `one parameter`() {
     // given & when
     val ages = All.of(::Age)
       .last(listOf(1, 2, 3))
